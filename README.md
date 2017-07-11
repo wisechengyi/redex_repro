@@ -1,4 +1,5 @@
-Step to reproduce the redex issue:
+Step to reproduce the redex issue
+=================================
 
 1. Install docker on your machine
 2. Build the container

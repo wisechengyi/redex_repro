@@ -1,0 +1,7 @@
+-keep class org.spongycastle.jcajce.provider.asymmetric.rsa.KeyFactorySpi
+-keep class org.spongycastle.jcajce.provider.asymmetric.rsa.KeyPairGeneratorSpi
+-keep class org.spongycastle.jcajce.provider.asymmetric.RSA$Mappings
+-keep class org.spongycastle.jcajce.provider.asymmetric.rsa.DigestSignatureSpi$SHA1
+-keep class org.spongycastle.jcajce.provider.digest.SHA1$Mappings
+-dontwarn javax.naming.**
+

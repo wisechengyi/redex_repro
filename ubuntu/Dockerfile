@@ -8,8 +8,11 @@
 FROM ubuntu:14.04
 
 RUN apt-get update && \
+    apt-get install -y software-properties-common python-software-properties && \
+    add-apt-repository -y ppa:ubuntu-toolchain-r/test && \
+    apt-get update && \
     apt-get install -y git \
-            g++ \
+            g++-4.9 \
             automake \
             autoconf \
             autoconf-archive \

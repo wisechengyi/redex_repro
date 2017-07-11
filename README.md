@@ -5,7 +5,7 @@ Step to reproduce the redex issue
 2. Build the ubuntu container
     ```
     git clone https://github.com/wisechengyi/redex_repro.git
-    cd redex_repro/ubuntu
+    cd redex_repro/ubuntu/<issue #>
 
     # This is going to take some time
     # redex binary will be at /redex/redex
@@ -19,7 +19,7 @@ Step to reproduce the redex issue
 4. Check out the repro repo again in the container
     ```
     git clone https://github.com/wisechengyi/redex_repro.git
-    cd redex_repro/ubuntu
+    cd redex_repro/ubuntu/<issue #>
     
     /redex/redex release.apk -o x.apk -c repro.config `find proguard_files/ -name '*.txt' | sed 's/^/ -P /g'` 
     ```

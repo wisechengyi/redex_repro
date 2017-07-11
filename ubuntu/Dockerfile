@@ -7,44 +7,31 @@
 # Pull base image.
 FROM ubuntu:14.04
 
-# Install.
-RUN \
-#  sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list && \
-  apt-get update && \
-  apt-get -y upgrade && \
-#  apt-get install -y build-essential && \
-  apt-get install -y software-properties-common && \
-  apt-get install -y byobu curl git htop man unzip vim wget && \
-  rm -rf /var/lib/apt/lists/*
-
-# Add files.
-ADD root/.bashrc /root/.bashrc
-ADD root/.gitconfig /root/.gitconfig
-ADD root/.scripts /root/.scripts
-
-# Set environment variables.
-ENV HOME /root
-
-# Define working directory.
-WORKDIR /root
-
-RUN apt-get install -y \
-    g++-4.9 \
-    automake \
-    autoconf \
-    autoconf-archive \
-    libtool \
-    libboost-all-dev \
-    liblz4-dev \
-    liblzma-dev \
-    make \
-    zlib1g-dev \
-    binutils-dev \
-    libjemalloc-dev \
-    libiberty-dev \
-    libjsoncpp-dev \
-    python3
-
+RUN apt-get update && \
+    apt-get install -y git \
+            g++ \
+            automake \
+            autoconf \
+            autoconf-archive \
+            libtool \
+            libboost-all-dev \
+            libevent-dev \
+            libdouble-conversion-dev \
+            libgoogle-glog-dev \
+            libgflags-dev \
+            liblz4-dev \
+            liblzma-dev \
+            libsnappy-dev \
+            make \
+            zlib1g-dev \
+            binutils-dev \
+            libjemalloc-dev \
+            libssl-dev \
+            python3 \
+            libiberty-dev \
+            libjsoncpp-dev && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 RUN git clone https://github.com/wisechengyi/redex.git && \
     cd redex && \

@@ -11,7 +11,11 @@ RUN apt-get update && \
     apt-get install -y software-properties-common python-software-properties && \
     add-apt-repository -y ppa:ubuntu-toolchain-r/test && \
     apt-get update && \
-    apt-get install -y git \
+    apt-get install -y \
+            git \
+            wget \
+            unzip \
+            gdb \
             g++-4.9 \
             automake \
             autoconf \
@@ -39,7 +43,11 @@ RUN apt-get update && \
 RUN git clone https://github.com/wisechengyi/redex.git && \
     cd redex && \
     git checkout -f debug && \
-    autoreconf -ivf && ./configure && make
+    autoreconf -ivf && \
+    ./configure CXX=/usr/bin/g++-4.9 && \
+    make
+
+
 
 # Define default command.
 CMD ["bash"]

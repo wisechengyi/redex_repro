@@ -1,0 +1,11 @@
+-optimizationpasses 3
+-dontusemixedcaseclassnames
+-dontskipnonpubliclibraryclasses
+-dontpreverify
+-repackageclasses ''
+-verbose
+-optimizations !code/simplification/arithmetic,!code/allocation/variable,!field/*,!class/merging/*,!method/removal/*
+-keepattributes *Annotation*
+-keepattributes SourceFile,LineNumberTable
+-dontwarn com.googlecode.javacv.**
+-dontwarn com.googlecode.javacpp.**

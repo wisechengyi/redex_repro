@@ -1,0 +1,122 @@
+# http://sourceforge.net/p/proguard/code/ci/proguard4.11/tree/examples/annotations/lib/
+
+-keep,allowobfuscation @interface **.Keep, **.KeepName
+
+# The following annotations can be specified with classes and with class
+# members.
+
+# @Keep specifies not to shrink, optimize, or obfuscate the annotated class
+# or class member as an entry point.
+
+-keep @**.Keep class *
+
+-keepclassmembers class * {
+    @**.Keep *;
+}
+
+# @KeepName specifies not to optimize or obfuscate the annotated class or
+# class member as an entry point.
+
+-keepnames @**.KeepName class *
+
+-keepclassmembernames class * {
+    @**.KeepName *;
+}
+
+-keep class **.TwitterJsonModelRegistrar
+
+# @AutoService has the same effect as @Keep when applied to a class.
+
+-keep,allowobfuscation @interface **.AutoService
+-keep @**.AutoService class *
+
+# Keep names used by AirBnB DeepLinkDispatch library.
+-keep class com.airbnb.deeplinkdispatch.** { *; }
+-keep class com.twitter.app.common.deeplink.** { *; }
+-keepclasseswithmembers class * {
+     @com.twitter.app.common.deeplink.TwitterAppLink <methods>;
+}
+-keepclasseswithmembers class * {
+     @com.twitter.app.common.deeplink.TwitterWebLink <methods>;
+}
+
+-keep class android.support.** { *; }
+-keep public class * extends android.support.v4.app.Fragment
+-keep public class * extends android.app.Activity
+-keep public class * extends android.app.Application
+-keep public class * extends android.app.Service
+-keep public class * extends android.content.BroadcastReceiver
+-keep public class * extends android.content.ContentProvider
+-keep public class * extends android.app.backup.BackupAgentHelper
+-keep public class * extends android.preference.Preference
+
+-keep class * extends java.util.ListResourceBundle {
+    protected Object[][] getContents();
+}
+
+-keep public class * extends android.view.View {
+    public <init>(android.content.Context);
+    public <init>(android.content.Context, android.util.AttributeSet);
+    public <init>(android.content.Context, android.util.AttributeSet, int);
+}
+
+-keepclasseswithmembers class * {
+    native <methods>;
+}
+
+-keepclasseswithmembers class * {
+    public <init>(android.content.Context, android.util.AttributeSet);
+}
+
+-keepclasseswithmembers class * {
+    public <init>(android.content.Context, android.util.AttributeSet, int);
+}
+
+-keepclassmembers enum * {
+    public static **[] values();
+    public static ** valueOf(java.lang.String);
+}
+
+-keepclassmembers class * extends android.app.Activity {
+    void onClickHandler(android.view.View);
+}
+
+-keepclassmembers class * implements android.os.Parcelable {
+    public static final ** CREATOR;
+}
+
+-keepclassmembers class **.R$* {
+    public static <fields>;
+}
+
+-keepclassmembers class * {
+   static native <methods>;
+   private native <methods>;
+   native <methods>;
+}
+
+-keepnames class * implements java.io.Serializable
+
+-keepclassmembers class * implements java.io.Serializable {
+    static final long serialVersionUID;
+    private static final java.io.ObjectStreamField[] serialPersistentFields;
+    !static !transient <fields>;
+    private void writeObject(java.io.ObjectOutputStream);
+    private void readObject(java.io.ObjectInputStream);
+    java.lang.Object writeReplace();
+    java.lang.Object readResolve();
+}
+
+-keepclassmembers class rx.internal.util.unsafe.*ArrayQueue*Field* {
+    long producerIndex;
+    long consumerIndex;
+}
+-keepclassmembers class rx.internal.util.unsafe.BaseLinkedQueueProducerNodeRef {
+    rx.internal.util.atomic.LinkedQueueNode producerNode;
+}
+-keepclassmembers class rx.internal.util.unsafe.BaseLinkedQueueConsumerNodeRef {
+    rx.internal.util.atomic.LinkedQueueNode consumerNode;
+}
+-keepclassmembers class rx.subscriptions.SerialSubscription {
+    rx.subscriptions.SerialSubscription$State state;
+}

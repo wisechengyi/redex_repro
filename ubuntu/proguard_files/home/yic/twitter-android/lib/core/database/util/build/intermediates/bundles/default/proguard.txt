@@ -1,0 +1,1 @@
+-keepnames interface * extends com.twitter.database.model.Schema

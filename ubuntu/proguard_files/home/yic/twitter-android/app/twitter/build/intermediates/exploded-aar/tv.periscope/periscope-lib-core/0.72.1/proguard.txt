@@ -1,0 +1,64 @@
+# Proguard config for periscope android library
+
+# ----- Strip out all verbose and debug logging -----
+-assumenosideeffects class tv.periscope.android.util.Log {
+    public static *** v(...);
+    public static *** d(...);
+}
+-assumenosideeffects class tv.periscope.util.logger.Logger {
+    public static *** v(...);
+    public static *** d(...);
+}
+
+# ----- App classes that will be serialized/deserialized over Gson -------
+-keep class tv.periscope.android.api.** { *; }
+-keep class tv.periscope.android.push.api.** { *; }
+-keep class tv.periscope.chatman.api.** { *; }
+-keep class tv.periscope.time.api.** { *; }
+
+# ------- autovalue gson extension ------
+-keep class **JSONModel* { *;}
+-keepclassmembers enum **JSONModel*
+-keep class **.AutoValue_* extends **JSONModel*
+
+# ----- EventBus -------
+-keepclassmembers,includedescriptorclasses class ** {
+   public void onEvent*(***);
+}
+
+# Only required if you use AsyncExecutor
+-keepclassmembers class * extends de.greenrobot.event.util.ThrowableFailureEvent {
+    public <init>(java.lang.Throwable);
+}
+
+# Don't warn for missing support classes
+-dontwarn de.greenrobot.event.util.*$Support
+-dontwarn de.greenrobot.event.util.*$SupportManagerFragment
+
+# ----- Retrofit & OkHttp -----
+-keep class okhttp3.** { *; }
+-keep interface okhttp3.** { *; }
+-dontwarn okhttp3.**
+-dontwarn rx.**
+-dontwarn retrofit2.**
+-dontwarn okio.**
+-keep class retrofit2.** { *; }
+-keepattributes Exceptions
+-keepattributes Signature
+-keepattributes *Annotation*
+
+# -------- for Dropwizard ----------
+-keep class com.codahale.metrics.** { *; }
+-dontwarn com.codahale.metrics.**
+-dontwarn org.slf4j.**
+
+# -------- for Exoplayer ----------
+-keep class com.google.android.exoplayer.** { *; }
+
+# -------- for Parceler ---------
+-keep interface org.parceler.Parcel
+-keep @org.parceler.Parcel class * { *; }
+-keep class **$$Parcelable { *; }
+
+# -------- for LHLS ---------
+-keep class tv.periscope.android.video.lhls.** { *; }

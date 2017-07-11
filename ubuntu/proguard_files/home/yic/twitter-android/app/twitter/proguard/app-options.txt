@@ -1,0 +1,16 @@
+-renamesourcefileattribute Twttr
+
+# For RxJava:
+-dontwarn sun.misc.Unsafe
+-dontwarn com.facebook.**
+
+# For dagger. Proguard takes 'dagger-compiler' as a library jar (since it's provided) and 'javax-inject' as
+# a program jar, and it fails when it finds that a class in 'dagger-compiler' extends Provider.
+# http://proguard.sourceforge.net/manual/troubleshooting.html#dependency
+-dontwarn javax.inject.Provider
+
+# For StateSaver, same reason.
+-dontwarn com.twitter.util.functional.Predicate
+
+# QA-1625: keep periscope class from being redex'ed
+-keep class tv.periscope.android.ui.chat.HeartUtils { *; }

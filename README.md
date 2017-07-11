@@ -7,7 +7,7 @@ Step to reproduce the redex issue
     git clone https://github.com/wisechengyi/redex_repro.git
     cd redex_repro/ubuntu/<issue #>
 
-    # This is going to take some time
+    # This is going to take a few minutes
     # redex binary will be at /redex/redex
     docker build . -t redex:repro
     ```
@@ -16,7 +16,7 @@ Step to reproduce the redex issue
     docker run -itd redex:repro # will output a <container id>
     docker exec -it <container id> bash
     ```
-4. Check out the repro repo again in the container
+4. Check out this repo again in the container
     ```
     git clone https://github.com/wisechengyi/redex_repro.git
     cd redex_repro/ubuntu/<issue #>
